@@ -9,6 +9,7 @@ class GetHotel(APIView):
         hotel=Hotel.objects.all()
         seriliazer=HotelSeriliazer(hotel,many=True)
         return Response(seriliazer.data)
+    
 
 class GetRoomType(APIView):
     def get(self,request):

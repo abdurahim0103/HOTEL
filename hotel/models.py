@@ -15,6 +15,7 @@ class RoomType(models.Model):
 
 class Room(models.Model):
     person_count = models.IntegerField()
+    rating = models.FloatField()
     price_per_night = models.FloatField()
     hotel = models.ForeignKey(Hotel, on_delete= models.CASCADE, null = True)
     roomtype = models.ForeignKey(RoomType, on_delete= models.CASCADE, null= True)
@@ -44,10 +45,16 @@ class RatingCategory(models.Model):
     def __str__(self):
         return self.name
 class Rating(models.Model):
-    score = models.FloatField()
     text = models.TextField()
     customer = models.ForeignKey(Customer, on_delete= models.CASCADE, null=True)
     booking = models.ForeignKey(Booking, on_delete= models.CASCADE, null=True)
-    rating_info = models.IntegerField()
+    rating = models.IntegerField()
+
+class Orders(models.Model):
+    customer = models.ForeignKey(Customer, on_delete = models.CASCADE)
+    room = models.ForeignKey(Room, on_delete = models.CASCADE)
+    rating = models.ForeignKey(Rating, on_delete = models.CASCADE)
+    totol_price = models.FloatField()
+    
     
 
